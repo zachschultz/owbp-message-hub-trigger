@@ -28,22 +28,15 @@ package:
         user: $MESSAGEHUB_USER
         password: $MESSAGEHUB_PASS
   actions:
-    message-hub-feed:
-      version: 1.0
+    process-message:
+      location: actions/process-message.js
+  triggers:
+    message-received-trigger:
       source: openwhisk-messagehub/messageHubFeed
       inputs:
         kafka_brokers_sasl: $KAFKA_BROKERS
         user: $MESSAGEHUB_USER
         password: $MESSAGEHUB_PASS
-    process-message:
-      location: actions/process-message.js
-  feeds:
-    message-hub-feed:
-      action: message-hub-feed
-  triggers:
-    message-received-trigger:
-      feed: message-hub-feed
-      inputs:
         isJSONData: true
         topic: $KAFKA_TOPIC
   rules:
