@@ -27,17 +27,14 @@ package:
         password: $MESSAGEHUB_PASS
   triggers:
       message-received-trigger:
-        feed: openwhisk-messagehub/messagehubFeed
+        feed: openwhisk-messagehub/messageHubFeed
         inputs:
           isJSONData: true
           topic: $KAFKA_TOPIC
   actions:
       process-message:
         location: actions/process-message.js
-  sequences:
-      process-message-messagehub-sequence:
-        actions: openwhisk-messagehub/messageHubFeed, process-message
   rules:
       log-message-rule:
         trigger: message-received-trigger
-        action: messagehub-trigger/process-message-messagehub-sequence
+        action: messagehub-trigger/process-message
