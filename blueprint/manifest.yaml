@@ -18,19 +18,15 @@
 package:
   name: messagehub-trigger
   namespace: _
-  dependencies:
-    openwhisk-messagehub:
-      location: /whisk.system/messaging
+  triggers:
+    message-received-trigger:
+      feed: /whisk.system/messaging/messageHubFeed
       inputs:
         kafka_brokers_sasl: $KAFKA_BROKERS
         user: $MESSAGEHUB_USER
         password: $MESSAGEHUB_PASS
-  triggers:
-      message-received-trigger:
-        feed: openwhisk-messagehub/messageHubFeed
-        inputs:
-          isJSONData: true
-          topic: $KAFKA_TOPIC
+        isJSONData: true
+        topic: $KAFKA_TOPIC
   actions:
       process-message:
         location: actions/process-message.js
