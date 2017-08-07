@@ -27,6 +27,7 @@ package:
         kafka_brokers_sasl: $KAFKA_BROKERS
         user: $MESSAGEHUB_USER
         password: $MESSAGEHUB_PASS
+        kafka_admin_url: $KAFKA_ADMIN_URL
   actions:
     process-message:
       location: actions/process-message.js
@@ -39,6 +40,7 @@ package:
         password: $MESSAGEHUB_PASS
         isJSONData: true
         topic: $KAFKA_TOPIC
+        kafka_admin_url: $KAFKA_ADMIN_URL
   rules:
       log-message-rule:
         trigger: message-received-trigger
