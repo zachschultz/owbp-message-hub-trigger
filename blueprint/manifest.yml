@@ -1,0 +1,34 @@
+# Wskdeploy manifest for openwhisk-cloudant-trigger
+# GitHub repo is located at https://github.com/IBM/openwhisk-message-hub-trigger
+
+# Deployment using this manifest file creates the following OpenWhisk components:
+#   Package:  openwhisk-messagehub
+#   Package:  messagehub-trigger
+#   Action:   messagehub-trigger/process-message.js
+#   Sequence: messagehub-trigger/process-message-messagehub-sequence
+#   Trigger:  message-received-trigger
+#   Rule:     log-message-rule
+
+# This manifest file reads the following env. variables:
+#   KAFKA_INSTANCE
+#   KAFKA_TOPIC
+
+package:
+  name: messagehub-trigger
+  namespace: _
+  triggers:
+    message-received-trigger:
+      source: Bluemix_${KAFKA_INSTANCE}_Credentials-1/messageHubFeed
+      inputs:
+        isJSONData: true
+        topic: $KAFKA_TOPIC
+  actions:
+    process-message:
+      location: actions/process-message.js
+  sequences:
+    process-change-messagehub-sequence:
+      actions: message-recieved-trigger, process-message
+  rules:
+    log-message-rule:
+      trigger: message-received-trigger
+      action: process-message
