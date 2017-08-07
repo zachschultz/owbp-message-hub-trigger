@@ -33,7 +33,7 @@ package:
       location: actions/process-message.js
   triggers:
     message-received-trigger:
-      source: openwhisk-messagehub/messageHubFeed
+      source: /whisk.system/messaging/messageHubFeed
       inputs:
         kafka_brokers_sasl: $KAFKA_BROKERS
         user: $MESSAGEHUB_USER
