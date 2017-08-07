@@ -10,25 +10,34 @@
 #   Rule:     log-message-rule
 
 # This manifest file reads the following env. variables:
-#   KAFKA_INSTANCE
+#   KAFKA_BROKERS
+#   MESSAGEHUB_USER
+#   MESSAGEHUB_PASS
 #   KAFKA_TOPIC
 
 package:
   name: messagehub-trigger
   namespace: _
-  triggers:
-    message-received-trigger:
-      source: Bluemix_openwhisk-kafka_Credentials-1/messageHubFeed
+  dependencies:
+    openwhisk-messagehub:
+      location: /whisk.system/messaging
       inputs:
-        isJSONData: true
-        topic: $KAFKA_TOPIC
+        kafka_brokers_sasl: $KAFKA_BROKERS
+        user: $MESSAGEHUB_USER
+        password: $MESSAGEHUB_PASS
+  triggers:
+      message-received-trigger:
+        source: openwhisk-messagehub/messagehubFeed
+        inputs:
+          isJSONData: true
+          topic: $KAFKA_TOPIC
   actions:
-    process-message:
-      location: actions/process-message.js
+      process-message:
+        location: actions/process-message.js
   sequences:
-    process-message-messagehub-sequence:
-      actions: message-received-trigger, process-message
+      process-message-messagehub-sequence:
+        actions: openwhisk-messagehub/messageHubFeed, process-message
   rules:
-    log-message-rule:
-      trigger: message-received-trigger
-      action: messagehub-trigger/process-message-messagehub-sequence
+      log-message-rule:
+        trigger: message-received-trigger
+        action: messagehub-trigger/process-message-messagehub-sequence
