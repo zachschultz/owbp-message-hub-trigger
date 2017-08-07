@@ -20,10 +20,17 @@ package:
   version: 1.0
   license: Apache-2.0
   namespace: _
+  dependencies:
+    openwhisk-messagehub:
+      location: /whisk.system/messaging
+      inputs:
+        kafka_brokers_sasl: $KAFKA_BROKERS
+        user: $MESSAGEHUB_USER
+        password: $MESSAGEHUB_PASS
   actions:
     message-hub-feed:
       version: 1.0
-      location: /whisk.system/messaging/messageHubFeed
+      source: openwhisk-messagehub/messageHubFeed
       inputs:
         kafka_brokers_sasl: $KAFKA_BROKERS
         user: $MESSAGEHUB_USER
