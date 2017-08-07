@@ -27,7 +27,7 @@ package:
       location: actions/process-message.js
   sequences:
     process-message-messagehub-sequence:
-      actions: message-recieved-trigger, process-message
+      actions: message-received-trigger, process-message
   rules:
     log-message-rule:
       trigger: message-received-trigger
