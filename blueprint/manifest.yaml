@@ -21,9 +21,10 @@ package:
   feeds:
     message-hub-feed:
       location: /whisk.system/messaging/messageHubFeed
-      kafka_brokers_sasl: $KAFKA_BROKERS
-      user: $MESSAGEHUB_USER
-      password: $MESSAGEHUB_PASS
+      inputs:
+        kafka_brokers_sasl: $KAFKA_BROKERS
+        user: $MESSAGEHUB_USER
+        password: $MESSAGEHUB_PASS
   triggers:
     message-received-trigger:
       feed: message-hub-feed
