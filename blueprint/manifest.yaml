@@ -18,7 +18,7 @@ package:
   namespace: _
   triggers:
     message-received-trigger:
-      source: Bluemix_${KAFKA_INSTANCE}_Credentials-1/messageHubFeed
+      source: $KAFKA_INSTANCE
       inputs:
         isJSONData: true
         topic: $KAFKA_TOPIC
