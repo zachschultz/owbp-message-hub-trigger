@@ -18,14 +18,16 @@
 package:
   name: messagehub-trigger
   namespace: _
+  feeds:
+    message-hub-feed:
+      location: /whisk.system/messaging/messageHubFeed
+      kafka_brokers_sasl: $KAFKA_BROKERS
+      user: $MESSAGEHUB_USER
+      password: $MESSAGEHUB_PASS
   triggers:
     message-received-trigger:
-      source: /whisk.system/messaging
-      feed: messageHubFeed
+      feed: message-hub-feed
       inputs:
-        kafka_brokers_sasl: $KAFKA_BROKERS
-        user: $MESSAGEHUB_USER
-        password: $MESSAGEHUB_PASS
         isJSONData: true
         topic: $KAFKA_TOPIC
   actions:
