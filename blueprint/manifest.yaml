@@ -20,7 +20,7 @@ package:
   namespace: _
   triggers:
     message-received-trigger:
-      feed: /whisk.system/messaging/messageHubFeed
+      source: /whisk.system/messaging/messageHubFeed
       inputs:
         kafka_brokers_sasl: $KAFKA_BROKERS
         user: $MESSAGEHUB_USER
