@@ -27,7 +27,7 @@ package:
         password: $MESSAGEHUB_PASS
   triggers:
       message-received-trigger:
-        source: openwhisk-messagehub/messagehubFeed
+        feed: openwhisk-messagehub/messagehubFeed
         inputs:
           isJSONData: true
           topic: $KAFKA_TOPIC
