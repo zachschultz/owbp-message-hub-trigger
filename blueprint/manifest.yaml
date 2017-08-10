@@ -32,12 +32,12 @@ package:
     process-message:
       location: actions/process-message.js
   triggers:
-    message-received-trigger-3:
+    message-received-trigger:
       source: openwhisk-messagehub/messageHubFeed
       inputs:
         isJSONData: true
         topic: $KAFKA_TOPIC
   rules:
       log-message-rule:
-        trigger: message-received-trigger-3
+        trigger: message-received-trigger
         action: messagehub-trigger/process-message
