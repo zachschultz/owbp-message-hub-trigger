@@ -30,7 +30,7 @@ package:
         kafka_admin_url: $KAFKA_ADMIN_URL
   actions:
     process-message:
-      location: runtimes/{{ run_time }}/actions/process-message.php
+      location: runtimes/{{ runtime }}/actions/process-message.{{ runtime_extension }}
   triggers:
     message-received-trigger:
       source: openwhisk-messagehub/messageHubFeed
