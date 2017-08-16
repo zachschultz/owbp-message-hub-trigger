@@ -22,8 +22,6 @@ esac
 
 echo ${runtime_token} = ${runtime}
 echo ${runtime_extension_token} = ${runtime_extension}
-echo "RUNNING LS FOR TEST"
-ls
 
 # Find and replace
 sed -e "s/${runtime_token}/${runtime}/g" \
