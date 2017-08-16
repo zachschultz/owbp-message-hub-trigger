@@ -28,5 +28,5 @@ ls
 # Find and replace
 sed -e "s/${runtime_token}/${runtime}/g" \
     -e "s/${runtime_extension_token}/${runtime_extension}/g" \
-    < manifest-template.yaml \
-    > manifest.yaml
+    < ./manifest-template.yaml \
+    > ./manifest.yaml
